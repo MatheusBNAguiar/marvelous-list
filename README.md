@@ -9,7 +9,8 @@ To maintain Marvel's style guide all the colors and fonts were based on its webs
 
 ### Colors
 - Primary color: #202020
-- Primary color: #202020
+- Primary color: #EB2328
+- Text color: #000000
 
 ### Fonts
 - Heading font: Roboto condensed
