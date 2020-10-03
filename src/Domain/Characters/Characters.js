@@ -2,21 +2,20 @@
 /** @jsxFrag React.Fragment */
 import { jsx } from '@emotion/core'
 import { H1 } from 'Components/Headings/Headings'
-// import { CharactersService } from 'Core/Services/Characters'
-// import { useState } from 'react'
+import { useCharacters } from './hooks/useCharacters'
+import { CharactersList } from './List/CharactersList'
 
 export const Characters = () => {
-  // const [characters, setCharacters] = useState([])
-
-  // useEffect(() => {
-  //   // CharactersService.listCharacters().then(setCharacters)
-  // }, [])
+  const { characters } = useCharacters()
 
   return (
     <>
       <H1>
         Characters
       </H1>
+      <CharactersList
+        characters={characters}
+      />
     </>
   )
 }
