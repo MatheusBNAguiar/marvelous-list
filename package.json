@@ -2,27 +2,12 @@
   "name": "marvelous-lists",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
-    "@types/jest": "^24.0.0",
-    "@types/node": "^12.0.0",
-    "@types/react": "^16.9.0",
-    "@types/react-dom": "^16.9.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-scripts": "3.4.3",
-    "typescript": "~3.7.2"
-  },
   "scripts": {
-    "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.js --fix",
+    "start": "react-scripts start",
+    "test": "react-scripts test"
   },
   "browserslist": {
     "production": [
@@ -35,5 +20,33 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.35",
+    "axios": "^0.20.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "3.4.3",
+    "reset-css": "^5.0.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.3.2",
+    "@testing-library/user-event": "^7.1.2",
+    "eslint": "^7.10.0",
+    "eslint-config-standard": "14.1.1",
+    "eslint-config-standard-react": "^9.2.0",
+    "eslint-plugin-emotion": "^10.0.27",
+    "eslint-plugin-import": ">=2.18.0",
+    "eslint-plugin-jest": "^24.0.2",
+    "eslint-plugin-node": ">=9.1.0",
+    "eslint-plugin-promise": ">=4.2.1",
+    "eslint-plugin-react": "^7.20.0",
+    "eslint-plugin-react-hooks": "4.0.0",
+    "eslint-plugin-standard": ">=4.0.0"
   }
 }

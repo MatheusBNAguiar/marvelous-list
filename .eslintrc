@@ -1,0 +1,36 @@
+{
+    "extends": [
+        "standard",
+        "standard-react",
+        "plugin:react-hooks/recommended"
+    ],
+    "env": {
+        "browser": true,
+        "jest": true
+    },
+    "plugins": [
+        "react-hooks",
+        "emotion"
+    ],
+    "rules": {
+        "standard/object-curly-even-spacing": "off",
+        "valid-jsdoc": "off",
+        "indent": [
+            "error",
+            2
+        ],
+        "object-curly-spacing": [
+            "error",
+            "always"
+        ],
+        "prefer-promise-reject-errors": 0,
+        "react/prop-types": 0,
+        "object-property-newline": 0,
+        "react/jsx-handler-names": 0,
+        "emotion/no-vanilla": "error",
+        "emotion/syntax-preference": [
+            2,
+            "string"
+        ]
+    }
+}
