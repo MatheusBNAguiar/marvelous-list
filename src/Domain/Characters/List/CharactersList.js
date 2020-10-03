@@ -35,7 +35,7 @@ const CharacterListItem = ({
           alt={imageIsNotAvailable ? 'Image was not found to this character' : name}
         />
       </div>
-      <div css={characterName}>
+      <div css={characterName} data-comp='lname'>
         {name}
       </div>
     </div>
