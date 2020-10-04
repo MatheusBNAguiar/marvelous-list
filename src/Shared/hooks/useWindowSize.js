@@ -1,7 +1,8 @@
 const { useState, useEffect } = require('react')
 
 /**
- * Function used to get window size, it was obtained on https://usehooks.com/useWindowSize/ as a way to make easier the development of this project
+ * Function used to get window size, it was obtained on https://usehooks.com/useWindowSize/ as
+ * a way to make easier the development of this project
  */
 export function useWindowSize () {
   const [windowSize, setWindowSize] = useState({

@@ -3,12 +3,12 @@ import { useCallback, useState } from 'react'
 import { usePaginationItemQuantity } from 'Shared/hooks/usePaginationItemQuantity'
 import { usePaginatedQuery } from 'react-query'
 
-export const useCharacters = () => {
+export const useCharacters = (characterStartsWith = '') => {
   const [page, setPage] = useState(1)
   const paginationQuantity = usePaginationItemQuantity()
 
-  const getCharacters = useCallback(() => paginationQuantity && CharactersService.listCharacters({ page, paginationQuantity }), [page, paginationQuantity])
-  const { isFetching, error, data: { results: characters = [], meta = {} } = {} } = usePaginatedQuery(['characters', { page, paginationQuantity }], getCharacters)
+  const getCharacters = useCallback(() => paginationQuantity && CharactersService.listCharacters({ page, paginationQuantity, characterStartsWith }), [page, paginationQuantity, characterStartsWith])
+  const { isFetching, error, data: { results: characters = [], meta = {} } = {} } = usePaginatedQuery(['characters', { page, paginationQuantity, characterStartsWith }], getCharacters)
 
   return {
     isFetching,

@@ -58,6 +58,10 @@ export const Pagination = ({
   onChange: emitChangeEvent = identity,
   ...props
 }) => {
+  if (quantity < 0) {
+    return null
+  }
+
   const onClick = index => () => emitChangeEvent(index)
 
   const generateItem = (index, active, clickCallback = identity, ellipses = false) => (

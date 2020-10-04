@@ -1,6 +1,5 @@
 /** @jsx jsx */
 import { jsx, css } from '@emotion/core'
-import { H1 } from 'Components/Headings/Headings'
 import { Loading } from 'Components/Loading/Loading'
 import { useEffect, useRef } from 'react'
 import { Pagination } from './Pagination'
@@ -17,7 +16,6 @@ const paginationContainer = css`
 `
 
 export const PaginationContainer = ({
-  title = '',
   isFetching = false,
   quantity,
   active,
@@ -34,9 +32,6 @@ export const PaginationContainer = ({
 
   return (
     <div ref={containerRef}>
-      <H1>
-        {title}
-      </H1>
       <div css={childrenContainer}>
         <Loading isLoading={isFetching} />
         {children}
