@@ -10,6 +10,7 @@ export const container = css`
 `
 
 export const indexesContainer = css`
+    border: 1px solid ${appColors.primary};
     align-items: center;
     display: flex;
     min-height: 40px;
@@ -26,9 +27,14 @@ export const indexesContainer = css`
 
 const indexActive = css`
     background-color: ${appColors.secondary};
+    color: ${appColors.white};
     width: 32px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
     height: 32px;
     margin: 0;
+    font-weight: bold;
     border-radius: 100%;
     box-shadow: 0px 0px 4px #00000014;
 `
@@ -45,7 +51,13 @@ const PaginationItem = ({ children, isActive = false, isClickable = true, ...oth
   )
 }
 
-export const Pagination = ({ quantity = 1, active = 1, onChange: emitChangeEvent = identity, ...other }) => {
+export const Pagination = ({
+  quantity = 1,
+  active = 1,
+  itemRange = 4,
+  onChange: emitChangeEvent = identity,
+  ...props
+}) => {
   const onClick = index => () => emitChangeEvent(index)
 
   const generateItem = (index, active, clickCallback = identity, ellipses = false) => (
@@ -58,8 +70,7 @@ export const Pagination = ({ quantity = 1, active = 1, onChange: emitChangeEvent
 
   const generateEllipsis = index => generateItem(index, false, identity, true)
 
-  const whichItemGenerate = (index, active) =>
-    shouldRender(index, active, 2) ? generateClickableItem(index, active) : generateEllipsis(index)
+  const whichItemGenerate = (index, active) => shouldRender(index, active, itemRange - 1) ? generateClickableItem(index, active) : generateEllipsis(index)
 
   const shouldRender = (index, active, range) => index === 1 || Math.abs(index - active) < range
 
@@ -71,13 +82,12 @@ export const Pagination = ({ quantity = 1, active = 1, onChange: emitChangeEvent
       active,
       last,
       index + 1,
-      shouldRender(index, active, 3) ? items.concat(whichItemGenerate(index, active)) : items
+      shouldRender(index, active, itemRange) ? items.concat(whichItemGenerate(index, active)) : items
     )
   }
 
   return (
-    <div css={container} {...other}>
-      <span>Página</span>
+    <div css={container} {...props}>
       <div css={indexesContainer}>{createPagination(active, quantity)}</div>
     </div>
   )
