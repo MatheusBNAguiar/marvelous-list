@@ -4,6 +4,7 @@ import { jsx, css } from '@emotion/core'
 const headingFont = css`
     font-family: 'Roboto Condensed';
     font-weight: 700;
+    margin-bottom: 15px;
 `
 
 const h1Style = css`

@@ -66,7 +66,7 @@ export const characterImageAsCover = css`
 `
 
 export const favoriteButton = css`
-    border: 2px solid white;
+    border: 2px solid ${appColors.primary};
     box-sizing: border-box;
     border-radius: 50%;
     width: 40px;

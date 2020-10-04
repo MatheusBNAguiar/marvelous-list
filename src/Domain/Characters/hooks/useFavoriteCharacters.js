@@ -1,7 +1,10 @@
-import { useCallback, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
+import { localStorageAdapter } from 'Shared/utils/localStorage'
+
+const localStorageKey = 'favoriteCharacters'
 
 export const useFavoriteCharacters = () => {
-  const [favoriteCharacters, setFavoriteCharacters] = useState([])
+  const [favoriteCharacters, setFavoriteCharacters] = useState(() => localStorageAdapter.get(localStorageKey) || [])
 
   const favoriteCharactersIds = useMemo(() => favoriteCharacters.map(({ id }) => id), [favoriteCharacters])
   const isCharacterFavorite = useCallback((id) => favoriteCharactersIds.includes(id), [favoriteCharactersIds])
@@ -15,9 +18,16 @@ export const useFavoriteCharacters = () => {
     }
   }, [isCharacterFavorite])
 
+  const clearFavoriteCharacters = () => setFavoriteCharacters([])
+
+  useEffect(() => {
+    localStorageAdapter.set(localStorageKey, favoriteCharacters || [])
+  }, [favoriteCharacters])
+
   return {
-    favoriteCharactersIds,
+    favoriteCharacters,
     isCharacterFavorite,
+    clearFavoriteCharacters,
     changeFavoriteCharacters
   }
 }
