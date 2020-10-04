@@ -1,16 +1,20 @@
 /** @jsx jsx */
 /** @jsxFrag React.Fragment */
 import { jsx } from '@emotion/core'
-import { characterImageContainer, characterName, characterImage, characterCard, characterImageAsCover } from './CharactersListItem.style'
+import { characterImageContainer, characterName, characterImage, characterCard, characterImageAsCover, favoriteButton, favoriteSelectedButton } from './CharactersListItem.style'
 
 export const CharacterListItem = ({
   image,
   name,
   imageIsNotAvailable = false,
+  isFavorite = false,
   children
 }) => {
   return (
     <div css={characterCard}>
+      <span css={[favoriteButton, isFavorite && favoriteSelectedButton]}>
+        <i className={`icon ${isFavorite ? 'icon-star-full' : 'icon-star-empty'}`} />
+      </span>
       <div css={characterImageContainer}>
         <img
           css={[characterImage, !imageIsNotAvailable && characterImageAsCover]}

@@ -64,3 +64,53 @@ export const characterName = css`
 export const characterImageAsCover = css`
     object-fit: cover;
 `
+
+export const favoriteButton = css`
+    border: 2px solid white;
+    box-sizing: border-box;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+        font-size: 18px;
+        color: white;
+    }
+
+    &:hover{
+        background-color: ${appColors.secondary};
+    }
+`
+
+export const favoriteSelectedButton = css`
+    background-color: ${appColors.secondary};
+
+    &:before,
+    &:after{
+        content: "";
+        position: absolute;
+        background-color: ${appColors.white};
+        width: 30px;
+        height: 30px;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+        border-radius: 50%;
+        z-index: -1;
+    }
+
+    &:after{
+        background-image: linear-gradient(#0846A8,#277AFF,#0846A8);
+        width: 23px;
+        height: 23px;
+    }
+`

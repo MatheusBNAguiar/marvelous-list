@@ -3,6 +3,7 @@
 import 'reset-css'
 import { Fragment } from 'react'
 import { css, jsx, Global } from '@emotion/core'
+import 'Shared/css/icomoon.css'
 
 global.React = { Fragment }
 
