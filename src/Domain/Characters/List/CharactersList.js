@@ -1,8 +1,8 @@
 /** @jsx jsx */
 /** @jsxFrag React.Fragment */
 import { css, jsx } from '@emotion/core'
-import { characterImageContainer, characterName, characterImage, characterCard, characterImageAsCover } from './CharactersListItem.style'
 import { untilTabletLandscape, untilTabletPortrait, untilPhone } from 'Shared/style/mediaQueries'
+import { CharacterListItem } from './CharacterListItem'
 
 const characterListContainer = css`
   display: grid; 
@@ -20,27 +20,6 @@ const characterListContainer = css`
     grid-template-columns: 1fr;
   }
 `
-
-const CharacterListItem = ({
-  image,
-  name,
-  imageIsNotAvailable = false
-}) => {
-  return (
-    <div css={characterCard}>
-      <div css={characterImageContainer}>
-        <img
-          css={[characterImage, !imageIsNotAvailable && characterImageAsCover]}
-          src={image}
-          alt={imageIsNotAvailable ? 'Image was not found to this character' : name}
-        />
-      </div>
-      <div css={characterName} data-comp='lname'>
-        {name}
-      </div>
-    </div>
-  )
-}
 
 export const CharactersList = ({ characters = [] }) => {
   return (
