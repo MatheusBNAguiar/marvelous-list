@@ -29,6 +29,7 @@
     "axios": "^0.20.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-query": "^2.23.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
     "reset-css": "^5.0.1"

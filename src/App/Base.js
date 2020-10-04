@@ -3,6 +3,9 @@
 import 'reset-css'
 import { Fragment } from 'react'
 import { css, jsx, Global } from '@emotion/core'
+import 'Shared/css/icomoon.css'
+import { QueryCache, ReactQueryCacheProvider } from 'react-query'
+const queryCache = new QueryCache()
 
 global.React = { Fragment }
 
@@ -27,8 +30,8 @@ const bodyStyle = css`
 `
 
 export const Base = ({ children }) => (
-  <>
+  <ReactQueryCacheProvider queryCache={queryCache}>
     <Global styles={bodyStyle} />
     {children}
-  </>
+  </ReactQueryCacheProvider>
 )
