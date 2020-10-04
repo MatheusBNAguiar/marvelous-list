@@ -1,7 +1,6 @@
 /** @jsx jsx */
 /** @jsxFrag React.Fragment */
 import { jsx } from '@emotion/core'
-import { H1 } from 'Components/Headings/Headings'
 import { PaginationContainer } from 'Components/Pagination/PaginationContainer'
 import { useCharacters } from './hooks/useCharacters'
 import { useFavoriteCharacters } from './hooks/useFavoriteCharacters'
@@ -13,10 +12,8 @@ export const Characters = () => {
 
   return (
     <>
-      <H1>
-        Characters
-      </H1>
       <PaginationContainer
+        title='Characters'
         isFetching={isFetching}
         quantity={meta.pages}
         active={page}

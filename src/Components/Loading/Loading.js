@@ -88,20 +88,20 @@ export const Loading = ({
   isLoading = false,
   loadingMessage = 'Loading...'
 }) => {
-  const messageRef = useRef()
+  const logoRef = useRef()
 
   useEffect(() => {
     if (isLoading) {
-      messageRef.current.scrollIntoView({ block: 'start', behavior: 'smooth' })
+      logoRef.current.scrollIntoView({ block: 'center', behavior: 'smooth' })
     }
   }, [isLoading])
 
   if (isLoading) {
     return (
       <div css={loadingContainer}>
-        <div css={loadingContent} ref={messageRef}>
+        <div css={loadingContent}>
           {loadingMessage}
-          <div css={captainAmericaShield}>
+          <div css={captainAmericaShield} ref={logoRef}>
             <i className='icon icon-star-full' />
           </div>
         </div>
