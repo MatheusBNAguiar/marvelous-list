@@ -27,10 +27,10 @@ export const CharacterNameFilter = (
 ) => {
   return (
     <div css={filterContainer}>
-      <label>You can filter by character name </label>
-      <input css={input} placeholder='Ex: Spider' onChange={onInputChange} value={inputName} />
-      <label> or search by its first letter</label>
-      <select css={input} name='select' placeholder='First letter' onChange={onSelectChange}>
+      <label htmlFor='character-name'>You can filter by character name </label>
+      <input id='character-name' css={input} placeholder='Ex: Spider' onChange={onInputChange} value={inputName} />
+      <label htmlFor='character-first-letter'> or search by its first letter</label>
+      <select id='character-first-letter' css={input} name='select' placeholder='First letter' onChange={onSelectChange}>
         {selectOptions.map(letter => <option value={letter} key={letter}>{letter}</option>)}
       </select>
     </div>

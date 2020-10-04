@@ -8,7 +8,7 @@ export const useCharacters = (characterStartsWith = '') => {
   const paginationQuantity = usePaginationItemQuantity()
 
   const getCharacters = useCallback(() => paginationQuantity && CharactersService.listCharacters({ page, paginationQuantity, characterStartsWith }), [page, paginationQuantity, characterStartsWith])
-  const { isFetching, error, data: { results: characters = [], meta = {} } = {} } = usePaginatedQuery(['characters', { page, paginationQuantity, characterStartsWith }], getCharacters)
+  const { isFetching, error, resolvedData: { results: characters = [], meta = {} } = {} } = usePaginatedQuery(['characters', { page, paginationQuantity, characterStartsWith }], getCharacters)
 
   return {
     isFetching,

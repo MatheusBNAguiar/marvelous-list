@@ -58,7 +58,7 @@ export const Pagination = ({
   onChange: emitChangeEvent = identity,
   ...props
 }) => {
-  if (quantity < 0) {
+  if (!quantity) {
     return null
   }
 
