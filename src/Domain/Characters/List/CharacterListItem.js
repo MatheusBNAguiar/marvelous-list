@@ -8,11 +8,17 @@ export const CharacterListItem = ({
   name,
   imageIsNotAvailable = false,
   isFavorite = false,
+  onFavoriteClick = x => x,
   children
 }) => {
   return (
     <div css={characterCard}>
-      <span css={[favoriteButton, isFavorite && favoriteSelectedButton]}>
+      <span
+        css={[favoriteButton, isFavorite && favoriteSelectedButton]}
+        role='button'
+        onClick={onFavoriteClick}
+        title={`${isFavorite ? 'Unmark' : 'Mark'} ${name} as your favorite character`}
+      >
         <i className={`icon ${isFavorite ? 'icon-star-full' : 'icon-star-empty'}`} />
       </span>
       <div css={characterImageContainer}>

@@ -21,7 +21,17 @@ const characterListContainer = css`
   }
 `
 
-export const CharactersList = ({ characters = [] }) => {
+export const CharactersList = ({
+  characters = [],
+  isCharacterFavorite = x => x,
+  changeFavoriteCharacters = x => x
+}) => {
+  const onFavoriteClick = (character) => event => {
+    event.preventDefault()
+    event.stopPropagation()
+    changeFavoriteCharacters(character)
+  }
+
   return (
     <div css={characterListContainer}>
       {
@@ -32,6 +42,8 @@ export const CharactersList = ({ characters = [] }) => {
             name={character.name}
             imageIsNotAvailable={character.imageIsNotAvailable}
             image={character.image}
+            isFavorite={isCharacterFavorite(character.id)}
+            onFavoriteClick={onFavoriteClick(character)}
           />
         ))
       }
