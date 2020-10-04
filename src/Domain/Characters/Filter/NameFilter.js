@@ -8,6 +8,7 @@ const filterContainer = css`
     padding: 10px;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
 `
 
 const input = css`
