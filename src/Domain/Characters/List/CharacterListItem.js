@@ -16,6 +16,7 @@ export const CharacterListItem = ({
   return (
     <div css={characterCard}>
       <FavoriteButton
+        isFavorite={isFavorite}
         onClick={onFavoriteClick}
         title={`${isFavorite ? 'Unmark' : 'Mark'} ${name} as your favorite character`}
       />

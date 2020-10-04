@@ -54,7 +54,7 @@ const PaginationItem = ({ children, isActive = false, isClickable = true, ...oth
 export const Pagination = ({
   quantity = 1,
   active = 1,
-  itemRange = 4,
+  itemRange = 3,
   onChange: emitChangeEvent = identity,
   ...props
 }) => {
