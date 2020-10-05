@@ -6,13 +6,13 @@ import { ListItemImage, ListItemImageContainer } from 'Components/ListItem/ListI
 import { ListItemSummaryContainer, ListItemSummaryItem } from 'Components/ListItem/ListItemSummary'
 import { comicImageAsCover, comicImageContainer, comicName } from './ComicListItem.style'
 
-const ComicItemSummary = ({ summary = {} }) => {
+export const ComicItemSummary = ({ summary = {} }) => {
   const { characterCount, storyCount, pageCount } = summary
   return (
     <ListItemSummaryContainer>
       <ListItemSummaryItem title='Characters' iconType='cool' quantity={characterCount} />
       <ListItemSummaryItem title='Stories' iconType='book' quantity={storyCount} />
-      <ListItemSummaryItem title='Pages' iconType='clock' quantity={pageCount} />
+      <ListItemSummaryItem title='Pages' iconType='file-text2' quantity={pageCount} />
     </ListItemSummaryContainer>
   )
 }
@@ -22,10 +22,11 @@ export const ComicListItem = ({
   name,
   imageIsNotAvailable = false,
   summary = {},
+  onItemClick = x => x,
   children
 }) => {
   return (
-    <ListItemContainer>
+    <ListItemContainer onClick={onItemClick}>
       <ListItemImageContainer css={comicImageContainer}>
         <ListItemImage
           css={[!imageIsNotAvailable && comicImageAsCover]}

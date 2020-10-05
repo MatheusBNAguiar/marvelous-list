@@ -21,7 +21,10 @@ const comicListContainer = css`
   }
 `
 
-export const ComicsList = ({ comics = [] }) => {
+export const ComicsList = ({
+  comics = [],
+  onItemClick
+}) => {
   return (
     <div css={comicListContainer}>
       {
@@ -33,6 +36,7 @@ export const ComicsList = ({ comics = [] }) => {
             imageIsNotAvailable={comic.imageIsNotAvailable}
             image={comic.image}
             summary={comic.summary}
+            onItemClick={() => onItemClick(comic)}
           />
         ))
       }
