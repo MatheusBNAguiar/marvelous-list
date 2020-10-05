@@ -5,7 +5,7 @@ export const CharacterParser = {
     comics: { available: comicsCount = 0 } = {},
     series: { available: seriesCount = 0 } = {},
     stories: { available: storiesCount = 0 } = {},
-    stories: { available: eventsCount = 0 } = {}
+    events: { available: eventsCount = 0 } = {}
   }) {
     const image = path && extension ? `${path}.${extension}` : ''
     const imageIsNotAvailable = image.indexOf('image_not_available') !== -1
