@@ -24,6 +24,10 @@ export const routes = [
       {
         path: '/',
         component: Home
+      },
+      {
+        path: '',
+        redirect: true
       }
     ]
   }
