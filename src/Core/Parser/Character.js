@@ -15,10 +15,12 @@ export const CharacterParser = {
       name,
       image,
       imageIsNotAvailable,
-      comicsCount,
-      seriesCount,
-      storiesCount,
-      eventsCount
+      summary: {
+        comicsCount,
+        seriesCount,
+        storiesCount,
+        eventsCount
+      }
     }
   },
   list (results = []) {

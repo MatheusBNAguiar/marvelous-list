@@ -17,12 +17,13 @@ export const CharacterListItem = ({
   name,
   imageIsNotAvailable = false,
   isFavorite = false,
+  onCharacterClick = x => x,
   onFavoriteClick = x => x,
   date = '',
   children
 }) => {
   return (
-    <ListItemContainer>
+    <ListItemContainer onClick={onCharacterClick}>
       <FavoriteButton
         isFavorite={isFavorite}
         onClick={onFavoriteClick}
@@ -37,10 +38,11 @@ export const CharacterListItem = ({
       </ListItemImageContainer>
       <ListItemHighlight>
         {name}
-        <div css={characterFavoriteDate}>
-          <i className='icon icon-star-full' />
-          {date}
-        </div>
+        {Boolean(date) && (
+          <div css={characterFavoriteDate}>
+            <i className='icon icon-star-full' />
+            {date}
+          </div>)}
       </ListItemHighlight>
       {children}
     </ListItemContainer>
