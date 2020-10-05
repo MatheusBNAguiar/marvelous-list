@@ -19,7 +19,6 @@ const navbarContainer = css`
   z-index: 1;
   box-shadow: 0px -2px 6px #00000029;
   z-index: 5;
-  position: sticky;
   top: 0;
 `
 
