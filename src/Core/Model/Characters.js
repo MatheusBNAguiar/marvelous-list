@@ -1,8 +1,9 @@
+import { ApiModel } from './Api'
+
 export const CharacterModel = {
-  meta ({ page, paginationQuantity, characterStartsWith }) {
+  meta ({ characterStartsWith, ...rest }) {
     return {
-      limit: paginationQuantity,
-      offset: (page - 1) * paginationQuantity,
+      ...ApiModel.meta(rest),
       nameStartsWith: characterStartsWith || undefined
     }
   }
