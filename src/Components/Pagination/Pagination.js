@@ -1,5 +1,6 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
+import { useMemo } from 'react'
 import { appColors } from 'Shared/style/colors'
 
 const identity = x => x
@@ -51,6 +52,36 @@ const PaginationItem = ({ children, isActive = false, isClickable = true, ...oth
   )
 }
 
+const generateLowerBound = (position = 1, range = 1) => {
+  const maxRange = position - range
+  const lowerBound = []
+  if (maxRange >= 1) {
+    lowerBound.push(1)
+  }
+  for (let index = range - 1; index > 0; index -= 1) {
+    if (position - index > 0) {
+      lowerBound.push(position - index)
+    }
+  }
+  return lowerBound
+}
+
+const generateUpperBound = (position = 1, range = 1, max = 1) => {
+  const maxRange = position + range
+  const upperBound = []
+  for (let index = 1; index < range; index += 1) {
+    if (position + index < max) {
+      upperBound.push(position + index)
+    }
+  }
+  if (maxRange <= max) {
+    upperBound.push(max)
+  }
+  return upperBound
+}
+
+const buildPages = (position, range, max) => generateLowerBound(position, range).concat(position).concat(generateUpperBound(position, range, max))
+
 export const Pagination = ({
   quantity = 1,
   active = 1,
@@ -58,41 +89,30 @@ export const Pagination = ({
   onChange: emitChangeEvent = identity,
   ...props
 }) => {
+  const availablePages = useMemo(() => buildPages(active, itemRange, quantity), [active, itemRange, quantity])
+  const onClick = index => () => emitChangeEvent(index)
+
   if (!quantity) {
     return null
   }
 
-  const onClick = index => () => emitChangeEvent(index)
-
-  const generateItem = (index, active, clickCallback = identity, ellipses = false) => (
-    <PaginationItem key={index} isActive={active} onClick={clickCallback} isClickable={!ellipses}>
-      {ellipses ? '...' : index}
-    </PaginationItem>
-  )
-
-  const generateClickableItem = (index, active) => generateItem(index, active === index, onClick(index))
-
-  const generateEllipsis = index => generateItem(index, false, identity, true)
-
-  const whichItemGenerate = (index, active) => shouldRender(index, active, itemRange - 1) ? generateClickableItem(index, active) : generateEllipsis(index)
-
-  const shouldRender = (index, active, range) => index === 1 || Math.abs(index - active) < range
-
-  const createPagination = (active, last, index = 1, items = []) => {
-    if (index === last) {
-      return items.concat(generateClickableItem(index, active))
-    }
-    return createPagination(
-      active,
-      last,
-      index + 1,
-      shouldRender(index, active, itemRange) ? items.concat(whichItemGenerate(index, active)) : items
-    )
-  }
-
   return (
     <div css={container} {...props}>
-      <div css={indexesContainer}>{createPagination(active, quantity)}</div>
+      <div css={indexesContainer}>
+
+        {
+          availablePages.map(page => (
+            <PaginationItem
+              key={page}
+              children
+              isActive={page === active}
+              onClick={onClick(page)}
+            >
+              {page}
+            </PaginationItem>
+          ))
+        }
+      </div>
     </div>
   )
 }
