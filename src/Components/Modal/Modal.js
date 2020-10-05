@@ -59,6 +59,7 @@ export const backdrop = css`
   position: fixed;
   top: 0;
   left: 0;
+  border-radius: 10px 10px 0 0 ;
   background: ${appColors.primary};
   opacity: 0.3;
   z-index: 5;
