@@ -23,6 +23,7 @@ const characterListContainer = css`
 
 export const CharactersList = ({
   characters = [],
+  onCharacterClick = x => x,
   isCharacterFavorite = x => x,
   changeFavoriteCharacters = x => x
 }) => {
@@ -44,6 +45,7 @@ export const CharactersList = ({
             imageIsNotAvailable={character.imageIsNotAvailable}
             image={character.image}
             isFavorite={isCharacterFavorite(character.id)}
+            onCharacterClick={() => onCharacterClick(character)}
             onFavoriteClick={onFavoriteClick(character)}
           />
         ))
