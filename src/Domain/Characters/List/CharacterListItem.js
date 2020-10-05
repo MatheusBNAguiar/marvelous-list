@@ -1,9 +1,16 @@
 /** @jsx jsx */
 /** @jsxFrag React.Fragment */
-import { jsx } from '@emotion/core'
+import { css, jsx } from '@emotion/core'
 import { FavoriteButton } from 'Components/Button/Favorite'
+import { ListItemContainer, ListItemHighlight } from 'Components/ListItem/ListItemCard'
 import { ListItemImage, ListItemImageContainer } from 'Components/ListItem/ListItemImage'
-import { characterName, characterCard, characterImageAsCover } from './CharactersListItem.style'
+import { characterImageAsCover } from './CharactersListItem.style'
+
+const characterFavoriteDate = css`
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: normal;
+`
 
 export const CharacterListItem = ({
   image,
@@ -11,10 +18,11 @@ export const CharacterListItem = ({
   imageIsNotAvailable = false,
   isFavorite = false,
   onFavoriteClick = x => x,
+  date = '',
   children
 }) => {
   return (
-    <div css={characterCard}>
+    <ListItemContainer>
       <FavoriteButton
         isFavorite={isFavorite}
         onClick={onFavoriteClick}
@@ -27,10 +35,14 @@ export const CharacterListItem = ({
           alt={imageIsNotAvailable ? 'Image was not found to this character' : name}
         />
       </ListItemImageContainer>
-      <div css={characterName} data-comp='lname'>
+      <ListItemHighlight>
         {name}
-      </div>
+        <div css={characterFavoriteDate}>
+          <i className='icon icon-star-full' />
+          {date}
+        </div>
+      </ListItemHighlight>
       {children}
-    </div>
+    </ListItemContainer>
   )
 }

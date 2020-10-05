@@ -40,6 +40,7 @@ export const CharactersList = ({
             key={character.id}
             id={character.id}
             name={character.name}
+            date={character.date}
             imageIsNotAvailable={character.imageIsNotAvailable}
             image={character.image}
             isFavorite={isCharacterFavorite(character.id)}

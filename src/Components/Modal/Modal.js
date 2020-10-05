@@ -52,6 +52,18 @@ const modalContent = css`
 
 `
 
+export const backdrop = css`
+  content: '';
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: ${appColors.primary};
+  opacity: 0.3;
+  z-index: 5;
+`
+
 export const Modal = ({
   isVisible = true,
   onModalClose = x => x,
@@ -79,16 +91,28 @@ export const Modal = ({
     // eslint-disable-next-line
   }, [isVisible, reference])
 
+  useEffect(() => {
+    const bodyElement = document.querySelector('body')
+    if (isVisible) {
+      bodyElement.style = 'overflow:hidden;'
+    } else {
+      bodyElement.style = ''
+    }
+  }, [isVisible])
+
   if (!isVisible) {
     return null
   }
 
   return (
-    <div css={modal} ref={reference} {...props}>
-      <span onClick={onModalClose} className='icon icon-cross' css={closeIcon} role='button' />
-      <div css={modalContent}>
-        {children}
+    <>
+      <div {...props} css={backdrop} />
+      <div css={modal} ref={reference} {...props}>
+        <span onClick={onModalClose} className='icon icon-cross' css={closeIcon} role='button' />
+        <div css={modalContent}>
+          {children}
+        </div>
       </div>
-    </div>
+    </>
   )
 }

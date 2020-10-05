@@ -3,6 +3,8 @@ import { localStorageAdapter } from 'Shared/utils/localStorage'
 
 const localStorageKey = 'favoriteCharacters'
 
+const buildDateString = () => (new Date()).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric' })
+
 export const useFavoriteCharacters = () => {
   const [favoriteCharacters, setFavoriteCharacters] = useState(() => localStorageAdapter.get(localStorageKey) || [])
 
@@ -14,7 +16,7 @@ export const useFavoriteCharacters = () => {
     if (isCharacterFavorite(id)) {
       setFavoriteCharacters(previous => previous.filter(({ id: characterId }) => characterId !== id))
     } else {
-      setFavoriteCharacters(previous => previous.concat(character))
+      setFavoriteCharacters(previous => previous.concat({ ...character, date: buildDateString() }).sort((a, b) => a.name.localeCompare(b.name)))
     }
   }, [isCharacterFavorite])
 
