@@ -5,11 +5,8 @@ export const ComicParser = {
     thumbnail: { path, extension } = {},
     characters: { available: characterCount } = {},
     stories: { available: storyCount } = {},
-    pageCount,
-    ...rest
+    pageCount
   }) {
-    console.log(rest)
-
     const image = path && extension ? `${path}.${extension}` : ''
     const imageIsNotAvailable = image.indexOf('image_not_available') !== -1
 
