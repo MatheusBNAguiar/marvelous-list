@@ -4,8 +4,10 @@ import { css, jsx } from '@emotion/core'
 import { Button } from 'Components/Button/Button'
 import { H1 } from 'Components/Headings/Headings'
 import { untilTabletPortrait } from 'Shared/style/mediaQueries'
+import { useCharacterModal } from './hooks/useCharacterModal'
 import { useFavoriteCharacters } from './hooks/useFavoriteCharacters'
 import { CharactersList } from './List/CharactersList'
+import { CharacterModal } from './Modal/Modal'
 
 const flex = css`
   display: flex;
@@ -24,6 +26,8 @@ const marginLeftAuto = css`
 
 export const FavoriteCharacters = () => {
   const { favoriteCharacters, isCharacterFavorite, changeFavoriteCharacters, clearFavoriteCharacters } = useFavoriteCharacters()
+  const { ísModalVisible, data, closeModal, openModal } = useCharacterModal()
+
   return (
     <>
       <div css={flex}>
@@ -37,8 +41,14 @@ export const FavoriteCharacters = () => {
       </div>
       <CharactersList
         characters={favoriteCharacters}
+        onCharacterClick={openModal}
         isCharacterFavorite={isCharacterFavorite}
         changeFavoriteCharacters={changeFavoriteCharacters}
+      />
+      <CharacterModal
+        isVisible={ísModalVisible}
+        onModalClose={closeModal}
+        data={data}
       />
     </>
   )
