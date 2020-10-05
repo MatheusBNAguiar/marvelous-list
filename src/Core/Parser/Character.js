@@ -1,6 +1,7 @@
 export const CharacterParser = {
   card ({
     id, name,
+    description = '',
     thumbnail: { path, extension } = {},
     comics: { available: comicsCount = 0 } = {},
     series: { available: seriesCount = 0 } = {},
@@ -14,6 +15,7 @@ export const CharacterParser = {
       id,
       name,
       image,
+      description,
       imageIsNotAvailable,
       summary: {
         comicsCount,

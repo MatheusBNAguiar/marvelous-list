@@ -7,10 +7,10 @@ export const comicImageAsCover = css`
 `
 
 export const comicImageContainer = css`
-    height: 600px;
+    height: 500px;
 
     ${untilTabletPortrait}{
-        height: 400px;
+        height: 350px;
     }
 `
 
