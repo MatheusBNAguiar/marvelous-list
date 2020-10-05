@@ -10,9 +10,9 @@ const ComicItemSummary = ({ summary = {} }) => {
   const { characterCount, storyCount, pageCount } = summary
   return (
     <ListItemSummaryContainer>
-      <ListItemSummaryItem iconType='cool' quantity={characterCount} />
-      <ListItemSummaryItem iconType='book' quantity={storyCount} />
-      <ListItemSummaryItem iconType='clock' quantity={pageCount} />
+      <ListItemSummaryItem title='Characters' iconType='cool' quantity={characterCount} />
+      <ListItemSummaryItem title='Stories' iconType='book' quantity={storyCount} />
+      <ListItemSummaryItem title='Pages' iconType='clock' quantity={pageCount} />
     </ListItemSummaryContainer>
   )
 }

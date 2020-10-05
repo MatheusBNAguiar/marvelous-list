@@ -19,8 +19,8 @@ const listItemSummaryItem = css`
 
 export const ListItemSummaryContainer = (props) => (<div css={listItemSummaryContainer} {...props} />)
 
-export const ListItemSummaryItem = ({ iconType = '', quantity = 0 }) => quantity ? (
-  <div css={listItemSummaryItem}>
+export const ListItemSummaryItem = ({ iconType = '', quantity = 0, title = '' }) => quantity ? (
+  <div css={listItemSummaryItem} title={title}>
     <i className={`icon icon-${iconType}`} />
     <span>{quantity}</span>
   </div>
