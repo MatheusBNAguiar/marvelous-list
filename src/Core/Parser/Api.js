@@ -1,4 +1,24 @@
 export const ApiParser = {
+  baseData ({
+    id,
+    name,
+    description = '',
+    thumbnail: { path, extension } = {}
+  }) {
+    const image = path && extension ? `${path}.${extension}` : ''
+    const imageIsNotAvailable = image.indexOf('image_not_available') !== -1
+
+    return ({
+      id,
+      name,
+      image,
+      description,
+      imageIsNotAvailable
+    })
+  },
+  baseList (results = []) {
+    return results.map(ApiParser.baseData)
+  },
   paginatedContent (resultsParser = x => x) {
     return (apiData = {}) => {
       const { offset, limit, total, count, results } = apiData

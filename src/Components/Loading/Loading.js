@@ -86,15 +86,16 @@ const captainAmericaShield = css`
 
 export const Loading = ({
   isLoading = false,
-  loadingMessage = 'Loading...'
+  loadingMessage = 'Loading...',
+  shouldScroll = true
 }) => {
   const logoRef = useRef()
 
   useEffect(() => {
-    if (isLoading) {
+    if (isLoading && shouldScroll) {
       logoRef.current.scrollIntoView({ block: 'center', behavior: 'smooth' })
     }
-  }, [isLoading])
+  }, [isLoading, shouldScroll])
 
   if (isLoading) {
     return (

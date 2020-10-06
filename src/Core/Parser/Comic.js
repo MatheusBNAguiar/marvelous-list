@@ -1,22 +1,16 @@
+import { ApiParser } from './Api'
+
 export const ComicParser = {
   card ({
-    id,
     title,
-    thumbnail: { path, extension } = {},
     characters: { available: characterCount } = {},
     stories: { available: storyCount } = {},
     pageCount,
-    description
+    ...rest
   }) {
-    const image = path && extension ? `${path}.${extension}` : ''
-    const imageIsNotAvailable = image.indexOf('image_not_available') !== -1
-
     return {
-      id,
+      ...ApiParser.baseData(rest),
       name: title,
-      image,
-      imageIsNotAvailable,
-      description: description || '',
       summary: {
         characterCount,
         storyCount,

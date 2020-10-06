@@ -1,5 +1,6 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { css, jsx } from '@emotion/core'
+import { GenericList } from 'Components/GenericList/GenericList'
 import { H1 } from 'Components/Headings/Headings'
 import { ListItemContainer } from 'Components/ListItem/ListItemCard'
 import { ListItemImage, ListItemImageContainer } from 'Components/ListItem/ListItemImage'
@@ -13,16 +14,22 @@ const CharacterSummary = ({ summary = {} }) => {
     <div>
       <SummaryPill title='Comics' iconType='cool' quantity={comicsCount} />
       <SummaryPill title='Stories' iconType='book' quantity={storiesCount} />
-      <SummaryPill title='Series' iconType='file-text2' quantity={seriesCount} />
+      <SummaryPill title='Stories' iconType='file-text2' quantity={seriesCount} />
       <SummaryPill title='Events' iconType='clock' quantity={eventsCount} />
     </div>
   )
 }
 
+const relatedGrid = css`
+  display: grid;
+  grid-auto-flow: row;
+`
+
 export const CharacterModal = ({
   isVisible = false,
   data = {},
-  onModalClose
+  onModalClose,
+  comics = []
 }) => {
   const { name, summary, image, imageIsNotAvailable, description } = data
   return (
@@ -45,6 +52,12 @@ export const CharacterModal = ({
           </div>
           <CharacterSummary summary={summary} />
         </div>
+      </div>
+      <div css={relatedGrid}>
+        <GenericList
+          title='Comics that marked history'
+          items={comics}
+        />
       </div>
     </Modal>
   )
