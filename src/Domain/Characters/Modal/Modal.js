@@ -14,7 +14,7 @@ const CharacterSummary = ({ summary = {} }) => {
       <SummaryPill title='Comics' iconType='cool' quantity={comicsCount} />
       <SummaryPill title='Stories' iconType='book' quantity={storiesCount} />
       <SummaryPill title='Series' iconType='file-text2' quantity={seriesCount} />
-      <SummaryPill title='Events' iconType='file-clock' quantity={eventsCount} />
+      <SummaryPill title='Events' iconType='clock' quantity={eventsCount} />
     </div>
   )
 }
