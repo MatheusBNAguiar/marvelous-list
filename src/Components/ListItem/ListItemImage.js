@@ -1,19 +1,20 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/core'
 import { Image } from 'Components/Image/Image'
+import { appColors } from 'Shared/style/colors'
 
 const listImageContainer = css`
     height: 220px;
     width: 100%;
     overflow: hidden;
     position: relative;
-
-    position: relative;
-    background-color: #cacaca;
+    background-color: ${appColors.primary};
 
     &::after {
       display: block;
       content: '';
+      top: 0;
+      z-index: 0;
       position: absolute;
       width: 100%;
       height: 100%;
@@ -46,7 +47,10 @@ const listImage = css`
     object-position: center center;
     padding: 0;
     width: 100%;
+    top: 0;
     height: 100%;
+    position: relative;
+    z-index: 1;
 `
 
 export const ListItemImage = (props) => (<Image css={listImage} {...props} />)

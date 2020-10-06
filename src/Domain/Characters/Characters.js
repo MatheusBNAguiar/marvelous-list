@@ -1,7 +1,7 @@
 /** @jsx jsx */
 /** @jsxFrag React.Fragment */
-import { jsx } from '@emotion/core'
-import { H1 } from 'Components/Headings/Headings'
+import { css, jsx } from '@emotion/core'
+import { H1, H3 } from 'Components/Headings/Headings'
 import { PaginationContainer } from 'Components/Pagination/PaginationContainer'
 import { CharacterNameFilter } from './Filter/NameFilter'
 import { CharactersList } from './List/CharactersList'
@@ -11,9 +11,19 @@ import { useCharacterModal } from './hooks/useCharacterModal'
 import { useCharactersNameFilter } from './hooks/useCharactersNameFilter'
 import { useFavoriteCharacters } from './hooks/useFavoriteCharacters'
 import { CharacterModal } from './Modal/Modal'
+import { appColors } from 'Shared/style/colors'
+
+const noDataContainer = css`
+  background-color: ${appColors.primary};
+  padding: 30px;
+  text-align: center;
+  margin-top: 10px;
+  border-radius: 20px;
+  color: ${appColors.white};
+`
 
 export const Characters = () => {
-  const { inputName, onInputChange, characterStartsWith, onSelectChange } = useCharactersNameFilter()
+  const { inputName, selectName, onInputChange, characterStartsWith, onSelectChange } = useCharactersNameFilter()
   const { isFetching, characters, meta, page, setPage } = useCharacters(characterStartsWith)
   const { isCharacterFavorite, changeFavoriteCharacters } = useFavoriteCharacters()
   const { ísModalVisible, data, closeModal, openModal, comics } = useCharacterModal()
@@ -25,9 +35,19 @@ export const Characters = () => {
       </H1>
       <CharacterNameFilter
         inputName={inputName}
+        selectName={selectName}
         onInputChange={onInputChange}
         onSelectChange={onSelectChange}
       />
+      {
+        characters.length === 0 && !isFetching && (
+          <div css={noDataContainer}>
+            <H3>
+              There are no results for this search
+            </H3>
+          </div>
+        )
+      }
       <PaginationContainer
         isFetching={isFetching}
         quantity={meta.pages}
@@ -41,6 +61,7 @@ export const Characters = () => {
           changeFavoriteCharacters={changeFavoriteCharacters}
         />
       </PaginationContainer>
+
       <CharacterModal
         isVisible={ísModalVisible}
         onModalClose={closeModal}

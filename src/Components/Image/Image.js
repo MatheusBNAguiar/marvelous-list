@@ -60,9 +60,6 @@ export const Image = ({ src, alt, ...props }) => {
       alt={alt}
       onLoad={onLoad}
       {...props}
-
-    //   onLoad={onLoad}
-    //   onError={onError}
     />
   )
 }

@@ -2,7 +2,7 @@
 /** @jsxFrag React.Fragment */
 import { css, jsx } from '@emotion/core'
 import { appColors } from 'Shared/style/colors'
-const selectOptions = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+const selectOptions = ['', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 
 const filterContainer = css`
     padding: 10px;
@@ -22,6 +22,7 @@ const input = css`
 export const CharacterNameFilter = (
   {
     inputName = '',
+    selectName = '',
     onInputChange = x => x,
     onSelectChange = x => x
   }
@@ -32,7 +33,7 @@ export const CharacterNameFilter = (
       <input id='character-name' css={input} placeholder='Ex: Spider' onChange={onInputChange} value={inputName} />
       <label htmlFor='character-first-letter'> or search by its first letter</label>
       <select id='character-first-letter' css={input} name='select' placeholder='First letter' onChange={onSelectChange}>
-        {selectOptions.map(letter => <option value={letter} key={letter}>{letter}</option>)}
+        {selectOptions.map(letter => <option selected={letter === selectName} value={letter} key={letter}>{letter}</option>)}
       </select>
     </div>
   )

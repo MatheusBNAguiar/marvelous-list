@@ -49,7 +49,7 @@ const navigationButton = css`
 
 export const FavoriteCharacters = () => {
   const { favoriteCharacters, isCharacterFavorite, changeFavoriteCharacters, clearFavoriteCharacters } = useFavoriteCharacters()
-  const { ísModalVisible, data, closeModal, openModal } = useCharacterModal()
+  const { ísModalVisible, data, closeModal, openModal, comics } = useCharacterModal()
 
   const onRemoveClick = () => {
     const shouldRemove = window.confirm('Are you sure that you want to clean your favorites list?')
@@ -91,6 +91,7 @@ export const FavoriteCharacters = () => {
         isVisible={ísModalVisible}
         onModalClose={closeModal}
         data={data}
+        comics={comics}
       />
     </>
   )
