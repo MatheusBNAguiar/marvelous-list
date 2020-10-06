@@ -1,26 +1,26 @@
 /** @jsx jsx */
-import { jsx } from '@emotion/core'
+import { css, jsx } from '@emotion/core'
+import { GenericList } from 'Components/GenericList/GenericList'
 import { H1 } from 'Components/Headings/Headings'
 import { ListItemContainer, ListItemHighlight } from 'Components/ListItem/ListItemCard'
 import { ListItemImage, ListItemImageContainer } from 'Components/ListItem/ListItemImage'
 import { Modal } from 'Components/Modal/Modal'
+import { SummaryPill } from 'Components/Pill/Pill'
 import { ComicItemSummary } from '../List/ComicListItem'
-import { descritiveInfo, infoContainer, summaryItemLabel, comicImageContainer, comicImageAsCover, comicDescription } from './Modal.style'
+import { descritiveInfo, infoContainer, comicImageContainer, comicImageAsCover, comicDescription } from './Modal.style'
 
-export const ComicSummaryItem = ({ iconType = '', quantity = 0, title = '' }) => quantity ? (
-  <span css={summaryItemLabel} title={title}>
-    <i className={`icon icon-${iconType}`} />
-    {title} {quantity}
-  </span>
-) : null
+const relatedGrid = css`
+  display: grid;
+  grid-auto-flow: row;
+`
 
 const ComicSummary = ({ summary = {} }) => {
   const { characterCount, storyCount, pageCount } = summary
   return (
     <div>
-      <ComicSummaryItem title='Characters' iconType='cool' quantity={characterCount} />
-      <ComicSummaryItem title='Stories' iconType='book' quantity={storyCount} />
-      <ComicSummaryItem title='Pages' iconType='file-text2' quantity={pageCount} />
+      <SummaryPill title='Characters' iconType='cool' quantity={characterCount} />
+      <SummaryPill title='Stories' iconType='book' quantity={storyCount} />
+      <SummaryPill title='Pages' iconType='file-text2' quantity={pageCount} />
     </div>
   )
 }
@@ -28,7 +28,8 @@ const ComicSummary = ({ summary = {} }) => {
 export const ComicModal = ({
   isVisible = false,
   data = {},
-  onModalClose
+  onModalClose,
+  characters = []
 }) => {
   const { name, summary, image, imageIsNotAvailable, description } = data
   return (
@@ -53,6 +54,13 @@ export const ComicModal = ({
           </div>
           <ComicSummary summary={summary} />
         </div>
+      </div>
+
+      <div css={relatedGrid}>
+        <GenericList
+          title='Characters that told us the stories'
+          items={characters}
+        />
       </div>
     </Modal>
   )

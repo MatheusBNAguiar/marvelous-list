@@ -19,7 +19,7 @@ const genericListItemContainer = css`
     }
 
     ${untilPhone}{
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
     }
 `
 

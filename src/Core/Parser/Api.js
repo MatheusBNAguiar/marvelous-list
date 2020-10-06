@@ -3,8 +3,9 @@ export const ApiParser = {
     id,
     name,
     description = '',
-    thumbnail: { path, extension } = {}
+    thumbnail = {}
   }) {
+    const { path, extension } = thumbnail || {}
     const image = path && extension ? `${path}.${extension}` : ''
     const imageIsNotAvailable = image.indexOf('image_not_available') !== -1
 
