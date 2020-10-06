@@ -11,7 +11,7 @@ const favoriteButton = css`
     position: absolute;
     top: 5px;
     right: 5px;
-    z-index: 1;
+    z-index: 3;
     display: flex;
     align-items: center;
     justify-content: center;
