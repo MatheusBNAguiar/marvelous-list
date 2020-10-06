@@ -10,7 +10,7 @@ import { ComicModal } from './Modal/Modal'
 
 export const Comics = () => {
   const { isFetching, comics, meta, page, setPage } = useComics()
-  const { ísModalVisible, data, closeModal, openModal } = useComicModal()
+  const { ísModalVisible, data, closeModal, openModal, characters } = useComicModal()
 
   return (
     <>
@@ -29,6 +29,7 @@ export const Comics = () => {
         isVisible={ísModalVisible}
         onModalClose={closeModal}
         data={data}
+        characters={characters}
       />
     </>
   )

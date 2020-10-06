@@ -1,20 +1,15 @@
+import { ApiParser } from './Api'
+
 export const CharacterParser = {
-  card ({
-    id, name,
-    thumbnail: { path, extension } = {},
+  character ({
     comics: { available: comicsCount = 0 } = {},
     series: { available: seriesCount = 0 } = {},
     stories: { available: storiesCount = 0 } = {},
-    events: { available: eventsCount = 0 } = {}
+    events: { available: eventsCount = 0 } = {},
+    ...other
   }) {
-    const image = path && extension ? `${path}.${extension}` : ''
-    const imageIsNotAvailable = image.indexOf('image_not_available') !== -1
-
     return {
-      id,
-      name,
-      image,
-      imageIsNotAvailable,
+      ...ApiParser.baseData(other),
       summary: {
         comicsCount,
         seriesCount,
@@ -24,6 +19,6 @@ export const CharacterParser = {
     }
   },
   list (results = []) {
-    return results.map(CharacterParser.card)
+    return results.map(CharacterParser.character)
   }
 }

@@ -42,11 +42,16 @@ const indexActive = css`
 
 const defaultCursor = css`
     cursor: default;
+    pointer-events: none;
 `
 
 const PaginationItem = ({ children, isActive = false, isClickable = true, ...other }) => {
   return (
-    <span css={[isActive && indexActive, isClickable || defaultCursor]} {...other}>
+    <span
+      {...other}
+      aria-current={isActive}
+      css={[isActive && indexActive, !isClickable && defaultCursor]}
+    >
       {children}
     </span>
   )
@@ -55,12 +60,16 @@ const PaginationItem = ({ children, isActive = false, isClickable = true, ...oth
 const generateLowerBound = (position = 1, range = 1) => {
   const maxRange = position - range
   const lowerBound = []
-  if (maxRange >= 1) {
+  if (position !== 1) {
     lowerBound.push(1)
   }
-  for (let index = range - 1; index > 0; index -= 1) {
-    if (position - index > 0) {
-      lowerBound.push(position - index)
+  if (maxRange > 1) {
+    lowerBound.push('...')
+  }
+  for (let index = range; index > 0; index -= 1) {
+    const newPosition = position - index
+    if (newPosition > 1) {
+      lowerBound.push(newPosition)
     }
   }
   return lowerBound
@@ -69,12 +78,16 @@ const generateLowerBound = (position = 1, range = 1) => {
 const generateUpperBound = (position = 1, range = 1, max = 1) => {
   const maxRange = position + range
   const upperBound = []
-  for (let index = 1; index < range; index += 1) {
-    if (position + index < max) {
-      upperBound.push(position + index)
+  for (let index = 1; index <= range; index += 1) {
+    const newPosition = position + index
+    if (newPosition < max) {
+      upperBound.push(newPosition)
     }
   }
-  if (maxRange <= max) {
+  if (maxRange < max) {
+    upperBound.push('...')
+  }
+  if (position !== max) {
     upperBound.push(max)
   }
   return upperBound
@@ -85,7 +98,7 @@ const buildPages = (position, range, max) => generateLowerBound(position, range)
 export const Pagination = ({
   quantity = 1,
   active = 1,
-  itemRange = 3,
+  itemRange = 2,
   onChange: emitChangeEvent = identity,
   ...props
 }) => {
@@ -97,22 +110,26 @@ export const Pagination = ({
   }
 
   return (
-    <div css={container} {...props}>
+    <nav role='navigation' aria-label='Pagination Navigation' css={container} {...props}>
       <div css={indexesContainer}>
-
         {
-          availablePages.map(page => (
-            <PaginationItem
-              key={page}
-              children
-              isActive={page === active}
-              onClick={onClick(page)}
-            >
-              {page}
-            </PaginationItem>
-          ))
+          availablePages.map((page, index) => {
+            const isClickable = page !== '...'
+            return (
+              <PaginationItem
+                key={isClickable ? page : `ellipsis-on-${index}`}
+                children
+                isActive={page === active}
+                aria-label={isClickable ? `Go to page ${page}` : 'Interval between pages'}
+                onClick={isClickable ? onClick(page) : () => {}}
+                isClickable={isClickable}
+              >
+                {page}
+              </PaginationItem>
+            )
+          })
         }
       </div>
-    </div>
+    </nav>
   )
 }

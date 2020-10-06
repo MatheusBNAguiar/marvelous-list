@@ -7,10 +7,10 @@ export const comicImageAsCover = css`
 `
 
 export const comicImageContainer = css`
-    height: 600px;
+    height: 500px;
 
     ${untilTabletPortrait}{
-        height: 400px;
+        height: 350px;
     }
 `
 
@@ -29,19 +29,6 @@ export const infoContainer = css`
 
 export const descritiveInfo = css`
     padding: 10px;
-`
-
-export const summaryItemLabel = css`
-    background-color: ${appColors.secondary};
-    padding: 5px;
-    border-radius: 10px;
-    margin-right: 10px;
-    margin-bottom: 5px;
-    display: inline-block;
-
-    i{
-        margin-right: 5px;
-    }
 `
 
 export const comicDescription = css`

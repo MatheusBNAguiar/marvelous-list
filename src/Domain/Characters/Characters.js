@@ -16,7 +16,7 @@ export const Characters = () => {
   const { inputName, onInputChange, characterStartsWith, onSelectChange } = useCharactersNameFilter()
   const { isFetching, characters, meta, page, setPage } = useCharacters(characterStartsWith)
   const { isCharacterFavorite, changeFavoriteCharacters } = useFavoriteCharacters()
-  const { ísModalVisible, data, closeModal, openModal } = useCharacterModal()
+  const { ísModalVisible, data, closeModal, openModal, comics } = useCharacterModal()
 
   return (
     <>
@@ -45,6 +45,7 @@ export const Characters = () => {
         isVisible={ísModalVisible}
         onModalClose={closeModal}
         data={data}
+        comics={comics}
       />
     </>
   )

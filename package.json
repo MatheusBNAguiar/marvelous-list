@@ -7,7 +7,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js --fix",
     "start": "react-scripts start",
-    "test": "react-scripts test"
+    "test": "react-scripts test --env=jest-environment-jsdom-sixteen "
   },
   "browserslist": {
     "production": [
@@ -35,9 +35,9 @@
     "reset-css": "^5.0.1"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.4",
+    "@testing-library/user-event": "^12.1.7",
     "eslint": "^7.10.0",
     "eslint-config-standard": "14.1.1",
     "eslint-config-standard-react": "^9.2.0",
@@ -48,6 +48,7 @@
     "eslint-plugin-promise": ">=4.2.1",
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-react-hooks": "4.0.0",
-    "eslint-plugin-standard": ">=4.0.0"
+    "eslint-plugin-standard": ">=4.0.0",
+    "jest-environment-jsdom-sixteen": "^1.0.3"
   }
 }
